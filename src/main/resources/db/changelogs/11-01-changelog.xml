@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1668176340403-1" author="eliot (generated)">
+        <createTable tableName="feed">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_feed"/>
+            </column>
+            <column name="user_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-2" author="eliot (generated)">
+        <createTable tableName="feed_tweets">
+            <column name="feed_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tweets_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-3" author="eliot (generated)">
+        <createTable tableName="reply">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_reply"/>
+            </column>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="images" type="VARCHAR(255)"/>
+            <column name="author_id" type="UUID"/>
+            <column name="created_at" type="DATE"/>
+            <column name="post_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-4" author="eliot (generated)">
+        <createTable tableName="reply_liked_by">
+            <column name="reply_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="liked_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-5" author="eliot (generated)">
+        <createTable tableName="reply_mentions">
+            <column name="reply_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_mentions"/>
+            </column>
+            <column name="mentions_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_mentions"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-6" author="eliot (generated)">
+        <createTable tableName="reply_replied_by">
+            <column name="reply_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_repliedby"/>
+            </column>
+            <column name="replied_by_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_repliedby"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-7" author="eliot (generated)">
+        <createTable tableName="reply_replies">
+            <column name="reply_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="replies_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-8" author="eliot (generated)">
+        <createTable tableName="reply_reply_to">
+            <column name="reply_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reply_to_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-9" author="eliot (generated)">
+        <createTable tableName="reply_retweeted_by">
+            <column name="reply_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_retweetedby"/>
+            </column>
+            <column name="retweeted_by_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_retweetedby"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-10" author="eliot (generated)">
+        <createTable tableName="reply_tags">
+            <column name="reply_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_tags"/>
+            </column>
+            <column name="tags_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_tags"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-11" author="eliot (generated)">
+        <createTable tableName="retweet">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_retweet"/>
+            </column>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="images" type="VARCHAR(255)"/>
+            <column name="author_id" type="UUID"/>
+            <column name="created_at" type="DATE"/>
+            <column name="original_tweet_id" type="BIGINT"/>
+            <column name="quote" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-12" author="eliot (generated)">
+        <createTable tableName="retweet_liked_by">
+            <column name="retweet_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="liked_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-13" author="eliot (generated)">
+        <createTable tableName="retweet_mentions">
+            <column name="retweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_mentions"/>
+            </column>
+            <column name="mentions_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_mentions"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-14" author="eliot (generated)">
+        <createTable tableName="retweet_replied_by">
+            <column name="retweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_repliedby"/>
+            </column>
+            <column name="replied_by_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_repliedby"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-15" author="eliot (generated)">
+        <createTable tableName="retweet_replies">
+            <column name="retweet_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="replies_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-16" author="eliot (generated)">
+        <createTable tableName="retweet_retweeted_by">
+            <column name="retweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_retweetedby"/>
+            </column>
+            <column name="retweeted_by_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_retweetedby"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-17" author="eliot (generated)">
+        <createTable tableName="retweet_tags">
+            <column name="retweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_tags"/>
+            </column>
+            <column name="tags_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_tags"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-18" author="eliot (generated)">
+        <createTable tableName="tag">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tag"/>
+            </column>
+            <column name="label" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-19" author="eliot (generated)">
+        <createTable tableName="tag_tweets">
+            <column name="tag_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tweets_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-20" author="eliot (generated)">
+        <createTable tableName="tweet">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet"/>
+            </column>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="images" type="VARCHAR(255)"/>
+            <column name="author_id" type="UUID"/>
+            <column name="created_at" type="DATE"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-21" author="eliot (generated)">
+        <createTable tableName="tweet_liked_by">
+            <column name="tweet_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="liked_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-22" author="eliot (generated)">
+        <createTable tableName="tweet_mentions">
+            <column name="tweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_mentions"/>
+            </column>
+            <column name="mentions_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_mentions"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-23" author="eliot (generated)">
+        <createTable tableName="tweet_replied_by">
+            <column name="tweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_repliedby"/>
+            </column>
+            <column name="replied_by_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_repliedby"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-24" author="eliot (generated)">
+        <createTable tableName="tweet_replies">
+            <column name="tweet_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="replies_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-25" author="eliot (generated)">
+        <createTable tableName="tweet_retweeted_by">
+            <column name="tweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_retweetedby"/>
+            </column>
+            <column name="retweeted_by_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_retweetedby"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-26" author="eliot (generated)">
+        <createTable tableName="tweet_tags">
+            <column name="tweet_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_tags"/>
+            </column>
+            <column name="tags_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_tweet_tags"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-27" author="eliot (generated)">
+        <createTable tableName="twitter_users">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_twitter_users"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="bio" type="VARCHAR(255)"/>
+            <column name="profile_pic" type="VARCHAR(255)"/>
+            <column name="created_at" type="DATE"/>
+            <column name="date_of_birth" type="DATE"/>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="website" type="VARCHAR(255)"/>
+            <column name="profile_banner" type="VARCHAR(255)"/>
+            <column name="is_verified" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-28" author="eliot (generated)">
+        <createTable tableName="twitter_users_followers">
+            <column name="followers_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="twitter_users_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-29" author="eliot (generated)">
+        <createTable tableName="twitter_users_following">
+            <column name="following_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="twitter_users_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-30" author="eliot (generated)">
+        <createTable tableName="twitter_users_tweets">
+            <column name="tweets_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="twitter_users_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668176340403-31" author="eliot (generated)">
+        <addUniqueConstraint columnNames="tweets_id" constraintName="uc_feed_tweets_tweets" tableName="feed_tweets"/>
+    </changeSet>
+    <changeSet id="1668176340403-32" author="eliot (generated)">
+        <addUniqueConstraint columnNames="liked_by_id" constraintName="uc_reply_liked_by_likedby"
+                             tableName="reply_liked_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-33" author="eliot (generated)">
+        <addUniqueConstraint columnNames="mentions_id" constraintName="uc_reply_mentions_mentions"
+                             tableName="reply_mentions"/>
+    </changeSet>
+    <changeSet id="1668176340403-34" author="eliot (generated)">
+        <addUniqueConstraint columnNames="replied_by_id" constraintName="uc_reply_replied_by_repliedby"
+                             tableName="reply_replied_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-35" author="eliot (generated)">
+        <addUniqueConstraint columnNames="replies_id" constraintName="uc_reply_replies_replies"
+                             tableName="reply_replies"/>
+    </changeSet>
+    <changeSet id="1668176340403-36" author="eliot (generated)">
+        <addUniqueConstraint columnNames="reply_to_id" constraintName="uc_reply_reply_to_replyto"
+                             tableName="reply_reply_to"/>
+    </changeSet>
+    <changeSet id="1668176340403-37" author="eliot (generated)">
+        <addUniqueConstraint columnNames="retweeted_by_id" constraintName="uc_reply_retweeted_by_retweetedby"
+                             tableName="reply_retweeted_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-38" author="eliot (generated)">
+        <addUniqueConstraint columnNames="tags_id" constraintName="uc_reply_tags_tags" tableName="reply_tags"/>
+    </changeSet>
+    <changeSet id="1668176340403-39" author="eliot (generated)">
+        <addUniqueConstraint columnNames="liked_by_id" constraintName="uc_retweet_liked_by_likedby"
+                             tableName="retweet_liked_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-40" author="eliot (generated)">
+        <addUniqueConstraint columnNames="mentions_id" constraintName="uc_retweet_mentions_mentions"
+                             tableName="retweet_mentions"/>
+    </changeSet>
+    <changeSet id="1668176340403-41" author="eliot (generated)">
+        <addUniqueConstraint columnNames="replied_by_id" constraintName="uc_retweet_replied_by_repliedby"
+                             tableName="retweet_replied_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-42" author="eliot (generated)">
+        <addUniqueConstraint columnNames="replies_id" constraintName="uc_retweet_replies_replies"
+                             tableName="retweet_replies"/>
+    </changeSet>
+    <changeSet id="1668176340403-43" author="eliot (generated)">
+        <addUniqueConstraint columnNames="retweeted_by_id" constraintName="uc_retweet_retweeted_by_retweetedby"
+                             tableName="retweet_retweeted_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-44" author="eliot (generated)">
+        <addUniqueConstraint columnNames="tags_id" constraintName="uc_retweet_tags_tags" tableName="retweet_tags"/>
+    </changeSet>
+    <changeSet id="1668176340403-45" author="eliot (generated)">
+        <addUniqueConstraint columnNames="tweets_id" constraintName="uc_tag_tweets_tweets" tableName="tag_tweets"/>
+    </changeSet>
+    <changeSet id="1668176340403-46" author="eliot (generated)">
+        <addUniqueConstraint columnNames="liked_by_id" constraintName="uc_tweet_liked_by_likedby"
+                             tableName="tweet_liked_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-47" author="eliot (generated)">
+        <addUniqueConstraint columnNames="mentions_id" constraintName="uc_tweet_mentions_mentions"
+                             tableName="tweet_mentions"/>
+    </changeSet>
+    <changeSet id="1668176340403-48" author="eliot (generated)">
+        <addUniqueConstraint columnNames="replied_by_id" constraintName="uc_tweet_replied_by_repliedby"
+                             tableName="tweet_replied_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-49" author="eliot (generated)">
+        <addUniqueConstraint columnNames="replies_id" constraintName="uc_tweet_replies_replies"
+                             tableName="tweet_replies"/>
+    </changeSet>
+    <changeSet id="1668176340403-50" author="eliot (generated)">
+        <addUniqueConstraint columnNames="retweeted_by_id" constraintName="uc_tweet_retweeted_by_retweetedby"
+                             tableName="tweet_retweeted_by"/>
+    </changeSet>
+    <changeSet id="1668176340403-51" author="eliot (generated)">
+        <addUniqueConstraint columnNames="tags_id" constraintName="uc_tweet_tags_tags" tableName="tweet_tags"/>
+    </changeSet>
+    <changeSet id="1668176340403-52" author="eliot (generated)">
+        <addUniqueConstraint columnNames="tweets_id" constraintName="uc_twitter_users_tweets_tweets"
+                             tableName="twitter_users_tweets"/>
+    </changeSet>
+    <changeSet id="1668176340403-53" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="feed" constraintName="FK_FEED_ON_USER"
+                                 referencedColumnNames="id" referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-54" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="reply" constraintName="FK_REPLY_ON_AUTHOR"
+                                 referencedColumnNames="id" referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-55" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="retweet"
+                                 constraintName="FK_RETWEET_ON_AUTHOR" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-56" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="tweet" constraintName="FK_TWEET_ON_AUTHOR"
+                                 referencedColumnNames="id" referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-57" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="feed_id" baseTableName="feed_tweets"
+                                 constraintName="fk_feetwe_on_feed" referencedColumnNames="id"
+                                 referencedTableName="feed"/>
+    </changeSet>
+    <changeSet id="1668176340403-58" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweets_id" baseTableName="feed_tweets"
+                                 constraintName="fk_feetwe_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-59" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_id" baseTableName="reply_liked_by"
+                                 constraintName="fk_replikby_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-60" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="liked_by_id" baseTableName="reply_liked_by"
+                                 constraintName="fk_replikby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-61" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_id" baseTableName="reply_mentions"
+                                 constraintName="fk_repmen_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-62" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="mentions_id" baseTableName="reply_mentions"
+                                 constraintName="fk_repmen_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-63" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="replies_id" baseTableName="reply_replies"
+                                 constraintName="fk_reprep_on_replies" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-64" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_id" baseTableName="reply_replies"
+                                 constraintName="fk_reprep_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-65" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_id" baseTableName="reply_replied_by"
+                                 constraintName="fk_reprepby_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-66" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="replied_by_id" baseTableName="reply_replied_by"
+                                 constraintName="fk_reprepby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-67" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_id" baseTableName="reply_reply_to"
+                                 constraintName="fk_reprepto_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-68" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_to_id" baseTableName="reply_reply_to"
+                                 constraintName="fk_reprepto_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-69" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_id" baseTableName="reply_retweeted_by"
+                                 constraintName="fk_repretby_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-70" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweeted_by_id" baseTableName="reply_retweeted_by"
+                                 constraintName="fk_repretby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-71" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="reply_id" baseTableName="reply_tags"
+                                 constraintName="fk_reptag_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-72" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tags_id" baseTableName="reply_tags" constraintName="fk_reptag_on_tag"
+                                 referencedColumnNames="id" referencedTableName="tag"/>
+    </changeSet>
+    <changeSet id="1668176340403-73" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweet_id" baseTableName="retweet_liked_by"
+                                 constraintName="fk_retlikby_on_retweet" referencedColumnNames="id"
+                                 referencedTableName="retweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-74" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="liked_by_id" baseTableName="retweet_liked_by"
+                                 constraintName="fk_retlikby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-75" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweet_id" baseTableName="retweet_mentions"
+                                 constraintName="fk_retmen_on_retweet" referencedColumnNames="id"
+                                 referencedTableName="retweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-76" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="mentions_id" baseTableName="retweet_mentions"
+                                 constraintName="fk_retmen_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-77" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="replies_id" baseTableName="retweet_replies"
+                                 constraintName="fk_retrep_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-78" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweet_id" baseTableName="retweet_replies"
+                                 constraintName="fk_retrep_on_retweet" referencedColumnNames="id"
+                                 referencedTableName="retweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-79" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweet_id" baseTableName="retweet_replied_by"
+                                 constraintName="fk_retrepby_on_retweet" referencedColumnNames="id"
+                                 referencedTableName="retweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-80" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="replied_by_id" baseTableName="retweet_replied_by"
+                                 constraintName="fk_retrepby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-81" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweet_id" baseTableName="retweet_retweeted_by"
+                                 constraintName="fk_retretby_on_retweet" referencedColumnNames="id"
+                                 referencedTableName="retweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-82" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweeted_by_id" baseTableName="retweet_retweeted_by"
+                                 constraintName="fk_retretby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-83" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweet_id" baseTableName="retweet_tags"
+                                 constraintName="fk_rettag_on_retweet" referencedColumnNames="id"
+                                 referencedTableName="retweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-84" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tags_id" baseTableName="retweet_tags"
+                                 constraintName="fk_rettag_on_tag" referencedColumnNames="id"
+                                 referencedTableName="tag"/>
+    </changeSet>
+    <changeSet id="1668176340403-85" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tag_id" baseTableName="tag_tweets" constraintName="fk_tagtwe_on_tag"
+                                 referencedColumnNames="id" referencedTableName="tag"/>
+    </changeSet>
+    <changeSet id="1668176340403-86" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweets_id" baseTableName="tag_tweets"
+                                 constraintName="fk_tagtwe_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-87" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweet_id" baseTableName="tweet_liked_by"
+                                 constraintName="fk_twelikby_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-88" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="liked_by_id" baseTableName="tweet_liked_by"
+                                 constraintName="fk_twelikby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-89" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweet_id" baseTableName="tweet_mentions"
+                                 constraintName="fk_twemen_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-90" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="mentions_id" baseTableName="tweet_mentions"
+                                 constraintName="fk_twemen_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-91" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="replies_id" baseTableName="tweet_replies"
+                                 constraintName="fk_twerep_on_reply" referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+    </changeSet>
+    <changeSet id="1668176340403-92" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweet_id" baseTableName="tweet_replies"
+                                 constraintName="fk_twerep_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-93" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweet_id" baseTableName="tweet_replied_by"
+                                 constraintName="fk_twerepby_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-94" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="replied_by_id" baseTableName="tweet_replied_by"
+                                 constraintName="fk_twerepby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-95" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweet_id" baseTableName="tweet_retweeted_by"
+                                 constraintName="fk_tweretby_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-96" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="retweeted_by_id" baseTableName="tweet_retweeted_by"
+                                 constraintName="fk_tweretby_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-97" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tags_id" baseTableName="tweet_tags" constraintName="fk_twetag_on_tag"
+                                 referencedColumnNames="id" referencedTableName="tag"/>
+    </changeSet>
+    <changeSet id="1668176340403-98" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweet_id" baseTableName="tweet_tags"
+                                 constraintName="fk_twetag_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-99" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="followers_id" baseTableName="twitter_users_followers"
+                                 constraintName="fk_twiusefol_on_followers" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-100" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="following_id" baseTableName="twitter_users_following"
+                                 constraintName="fk_twiusefol_on_following" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-101" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="twitter_users_id" baseTableName="twitter_users_followers"
+                                 constraintName="fk_twiusefol_on_twitter_users" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-102" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="twitter_users_id" baseTableName="twitter_users_following"
+                                 constraintName="fk_twiusefol_on_twitter_usersDp96Ol" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+    <changeSet id="1668176340403-103" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="tweets_id" baseTableName="twitter_users_tweets"
+                                 constraintName="fk_twiusetwe_on_tweet" referencedColumnNames="id"
+                                 referencedTableName="tweet"/>
+    </changeSet>
+    <changeSet id="1668176340403-104" author="eliot (generated)">
+        <addForeignKeyConstraint baseColumnNames="twitter_users_id" baseTableName="twitter_users_tweets"
+                                 constraintName="fk_twiusetwe_on_user" referencedColumnNames="id"
+                                 referencedTableName="twitter_users"/>
+    </changeSet>
+
+</databaseChangeLog>
